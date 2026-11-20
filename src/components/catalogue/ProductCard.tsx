@@ -13,9 +13,19 @@ export function ProductCard({ product, divisionName }: Props) {
       href={`/products/detail/${product.slug}`}
       className="group block border border-[#E5E7EB] rounded-lg overflow-hidden hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2"
     >
-      {/* Image placeholder */}
-      <div className="aspect-[4/3] bg-gray-100 flex items-center justify-center relative overflow-hidden">
-        <span className="text-sm text-[#9CA3AF] px-4 text-center">{product.name}</span>
+      {/* Product image */}
+      <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
+        {product.image_url ? (
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full">
+            <span className="text-sm text-[#9CA3AF] px-4 text-center">{product.name}</span>
+          </div>
+        )}
       </div>
 
       <div className="p-4">

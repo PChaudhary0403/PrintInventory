@@ -1,45 +1,7 @@
 import Link from "next/link";
 import { DivisionCard } from "@/components/home/DivisionCard";
 import { HowItWorks } from "@/components/home/HowItWorks";
-
-const divisions = [
-  {
-    name: "Labels & Stickers",
-    slug: "labels-stickers",
-    description:
-      "Custom printed labels and stickers in any shape, size, or finish.",
-  },
-  {
-    name: "Race & Event Numbers",
-    slug: "race-event-numbers",
-    description:
-      "Durable race bibs and event numbers with optional timing chips.",
-  },
-  {
-    name: "MTB Boards",
-    slug: "mtb-boards",
-    description:
-      "Custom mountain bike number boards and signage for events.",
-  },
-  {
-    name: "Stamps",
-    slug: "stamps",
-    description:
-      "Self-inking and traditional rubber stamps for business and personal use.",
-  },
-  {
-    name: "Trophies",
-    slug: "trophies",
-    description:
-      "Awards, medals, and trophies with custom engraving and branding.",
-  },
-  {
-    name: "Laser-Cut Work",
-    slug: "laser-cut-work",
-    description:
-      "Precision laser cutting and engraving on wood, acrylic, and metal.",
-  },
-];
+import { DIVISIONS } from "@/lib/catalogue-data";
 
 export default function HomePage() {
   return (
@@ -72,8 +34,12 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="hidden lg:flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200 aspect-[4/3]">
-              <span className="text-text-muted text-sm">Product Showcase</span>
+            <div className="hidden lg:block rounded-lg overflow-hidden border border-gray-200">
+              <img
+                src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80"
+                alt="Professional printing showcase — custom labels, stickers, and signage"
+                className="w-full h-full object-cover aspect-[4/3]"
+              />
             </div>
           </div>
         </div>
@@ -85,8 +51,14 @@ export default function HomePage() {
           Our Product Ranges
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {divisions.map((division) => (
-            <DivisionCard key={division.slug} {...division} />
+          {DIVISIONS.filter((d) => d.is_active).map((division) => (
+            <DivisionCard
+              key={division.slug}
+              name={division.name}
+              slug={division.slug}
+              description={division.description}
+              imageUrl={division.image_url ?? undefined}
+            />
           ))}
         </div>
       </section>
