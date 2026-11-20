@@ -43,7 +43,7 @@ export const DIVISIONS: Division[] = [
   { id: 'd3', name: 'MTB Boards', slug: 'mtb-boards', description: 'Custom mountain bike number boards and plates. Durable materials designed for outdoor racing conditions.', image_url: 'https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?w=600&q=80', display_order: 3, is_active: true },
   { id: 'd4', name: 'Stamps', slug: 'stamps', description: 'Custom rubber and self-inking stamps for business and personal use.', image_url: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80', display_order: 4, is_active: true },
   { id: 'd5', name: 'Trophies', slug: 'trophies', description: 'Custom engraved and printed trophies, awards, and recognition items for events and achievements.', image_url: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80', display_order: 5, is_active: true },
-  { id: 'd6', name: 'Laser-Cut Work', slug: 'laser-cut-work', description: 'Precision laser-cut signage, decorative items, and custom fabrication in wood, acrylic, and metal.', image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', display_order: 6, is_active: true },
+  { id: 'd6', name: 'Laser-Cut Work', slug: 'laser-cut-work', description: 'Precision laser-cut signage, decorative items, and custom fabrication in wood, acrylic, and metal.', image_url: 'https://plus.unsplash.com/premium_photo-1661816375956-30f65c6a2dc8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', display_order: 6, is_active: true },
 ]
 
 export const PRODUCTS: CatalogueProduct[] = [
@@ -79,7 +79,7 @@ export const PRODUCTS: CatalogueProduct[] = [
     id: 'p3', division_id: 'd1', name: 'Bumper Stickers', slug: 'bumper-stickers',
     short_description: 'Durable outdoor bumper stickers with UV-resistant inks.',
     description: 'Tough, weather-resistant bumper stickers that last years outdoors. UV-resistant inks, strong adhesive, available in standard or custom sizes.',
-    base_price: 350, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', is_active: true, is_featured: true, display_order: 3,
+    base_price: 350, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1625768376503-68d2495d78c5?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', is_active: true, is_featured: true, display_order: 3,
     options: [
       { key: 'size', name: 'Size', type: 'select', required: true, values: [{ label: '20×6 cm', value: '20x6', modifier: 0 }, { label: '25×8 cm', value: '25x8', modifier: 50 }, { label: '30×10 cm', value: '30x10', modifier: 100 }] },
       { key: 'quantity', name: 'Quantity', type: 'number', required: true, validation: { min: 25, max: 5000, step: 25 } },
@@ -101,7 +101,7 @@ export const PRODUCTS: CatalogueProduct[] = [
     id: 'p5', division_id: 'd2', name: 'Timing Chip Race Bibs', slug: 'timing-chip-race-bibs',
     short_description: 'Race bibs pre-fitted with timing chip slots for timed events.',
     description: 'Professional race bibs with built-in timing chip pockets for chip-timed events. Reinforced corners, two-sided print option, full-colour.',
-    base_price: 350, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1461896836934-bd45ba8c3e3b?w=600&q=80', is_active: true, is_featured: true, display_order: 2,
+    base_price: 350, currency: 'INR', image_url: 'https://plus.unsplash.com/premium_photo-1674641194949-e154719cdc02?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', is_active: true, is_featured: true, display_order: 2,
     options: [
       { key: 'size', name: 'Size', type: 'select', required: true, values: [{ label: 'A5', value: 'a5', modifier: 0 }, { label: 'A4', value: 'a4', modifier: 80 }] },
       { key: 'quantity', name: 'Quantity', type: 'number', required: true, validation: { min: 100, max: 5000, step: 100 } },
@@ -136,7 +136,7 @@ export const PRODUCTS: CatalogueProduct[] = [
     id: 'p8', division_id: 'd4', name: 'Rubber Stamps', slug: 'rubber-stamps',
     short_description: 'Traditional rubber stamps for art, craft, and business use.',
     description: 'Custom rubber stamps mounted on wood. Ideal for artists, crafters, and businesses wanting a traditional ink-pad stamp.',
-    base_price: 350, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1461896836934-bd45ba8c3e3b?w=600&q=80', is_active: true, is_featured: true, display_order: 2,
+    base_price: 350, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1611075551111-dfda5f9c6f02?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', is_active: true, is_featured: true, display_order: 2,
     options: [
       { key: 'size', name: 'Size', type: 'select', required: true, values: [{ label: 'Small (up to 4cm²)', value: 'small', modifier: 0 }, { label: 'Medium (up to 9cm²)', value: 'medium', modifier: 100 }, { label: 'Large (up to 16cm²)', value: 'large', modifier: 200 }] },
       { key: 'quantity', name: 'Quantity', type: 'number', required: true, validation: { min: 1, max: 50, step: 1 } },
@@ -183,7 +183,7 @@ export const PRODUCTS: CatalogueProduct[] = [
     id: 'p12', division_id: 'd6', name: 'Wooden Plaques', slug: 'wooden-plaques',
     short_description: 'Custom laser-engraved wooden plaques and name boards.',
     description: 'Laser-engraved wooden plaques in natural timber finishes. Suitable for awards, nameplates, and decorative signage.',
-    base_price: 700, currency: 'INR', image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', is_active: true, is_featured: true, display_order: 2,
+    base_price: 700, currency: 'INR', image_url: 'https://plus.unsplash.com/premium_photo-1714702846863-2687e02e140e?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', is_active: true, is_featured: true, display_order: 2,
     options: [
       { key: 'size', name: 'Size', type: 'select', required: true, values: [{ label: 'Small (15×10cm)', value: 'small', modifier: 0 }, { label: 'Medium (20×15cm)', value: 'medium', modifier: 150 }, { label: 'Large (30×20cm)', value: 'large', modifier: 300 }] },
       { key: 'wood', name: 'Wood Type', type: 'select', required: true, values: [{ label: 'MDF', value: 'mdf', modifier: 0 }, { label: 'Bamboo', value: 'bamboo', modifier: 100 }, { label: 'Walnut', value: 'walnut', modifier: 250 }] },
