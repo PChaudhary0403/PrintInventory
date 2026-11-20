@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Search, ShoppingCart, Menu, X, User, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { cn } from '@/lib/utils';
+import { useCartStore } from '@/lib/cart-store';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -25,12 +26,12 @@ const searchCategories = [
 
 export function SiteHeader() {
   const { user, signOut } = useAuth();
+  const cartItemCount = useCartStore((s) => s.itemCount());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [searchQuery, setSearchQuery] = useState('');
   const categoryRef = useRef<HTMLDivElement>(null);
-  const cartItemCount = 0;
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
