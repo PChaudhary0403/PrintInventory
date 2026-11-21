@@ -40,7 +40,7 @@ export default function AdminUsersPage() {
               <td colSpan={6} className="px-4 py-14 text-center text-text-secondary">
                 <p className="font-medium">No users yet</p>
                 <p className="mt-1 text-xs text-text-muted">
-                  Users appear here once they sign up. Connect Supabase to load real data.
+                  Users appear here once they sign up.
                 </p>
               </td>
             </tr>

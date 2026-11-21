@@ -3,15 +3,21 @@
 import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
+import { useAuth } from '@/lib/auth/auth-context';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Check if local admin env vars are configured (NEXT_PUBLIC_ vars are
+  // inlined at build time, so this works on the client)
+  const localAdminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const hasLocalAdmin = !!localAdminEmail;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,23 +25,22 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const supabase = createClient();
-      const { error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const result = await signIn(email, password);
 
-      if (authError) {
-        setError(authError.message);
+      if (result.error) {
+        setError(result.error);
+        setLoading(false);
         return;
       }
 
-      const redirect = searchParams.get('redirect') || '/account';
-      router.push(redirect);
-      router.refresh();
+      // If user is admin and no explicit redirect param was provided, go straight to /admin
+      const redirectParam = searchParams.get('redirect');
+      const target = redirectParam || (result.isAdmin ? '/admin' : '/account');
+
+      // Use window.location.href to guarantee full page load with updated cookies for middleware
+      window.location.href = target;
     } catch {
       setError('An unexpected error occurred. Please try again.');
-    } finally {
       setLoading(false);
     }
   };
@@ -101,7 +106,14 @@ function LoginForm() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-gray-600">
+      {/* Admin hint — only shown when env vars are configured */}
+      {hasLocalAdmin && (
+        <div className="mt-6 p-3 bg-amber-50 border border-amber-200 rounded-md">
+          <p className="text-xs font-semibold text-amber-800 mb-1">Admin Access Available</p>
+        </div>
+      )}
+
+      <p className="mt-4 text-center text-sm text-gray-600">
         Don&apos;t have an account?{' '}
         <Link href="/register" className="text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
           Register

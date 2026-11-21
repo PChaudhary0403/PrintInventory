@@ -25,6 +25,18 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
+  const isLocalAdmin = request.cookies.get('dh_admin_session')?.value === '1'
+
+  // If authenticated as local admin, permit admin and customer routes
+  if (isLocalAdmin) {
+    if (request.nextUrl.pathname === '/login') {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin'
+      return NextResponse.redirect(url)
+    }
+    return supabaseResponse
+  }
+
   const { data: { user } } = await supabase.auth.getUser()
 
   const customerRoutes = ['/account', '/checkout', '/design']

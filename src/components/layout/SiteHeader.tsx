@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingCart, Menu, X, User, ChevronDown } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, User, ChevronDown, Shield } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/lib/cart-store';
@@ -25,7 +25,7 @@ const searchCategories = [
 ];
 
 export function SiteHeader() {
-  const { user, signOut } = useAuth();
+  const { user, isAdmin, signOut } = useAuth();
   const cartItemCount = useCartStore((s) => s.itemCount());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
@@ -62,6 +62,17 @@ export function SiteHeader() {
           </Link>
 
           <div className="flex items-center gap-4">
+            {/* Admin Panel — only visible to logged-in admins */}
+            {isAdmin && (
+              <Link
+                href="/admin"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-md bg-gray-900 text-white hover:bg-gray-800 transition-colors"
+              >
+                <Shield className="h-3.5 w-3.5 text-blue-400" />
+                Admin Panel
+              </Link>
+            )}
+
             {user ? (
               <>
                 <Link
@@ -233,6 +244,16 @@ export function SiteHeader() {
 
           {/* Mobile auth links */}
           <div className="sm:hidden flex flex-col gap-1 pt-2 border-t border-[#E5E7EB]">
+            {isAdmin && (
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-700 bg-blue-50 rounded-md transition-colors"
+              >
+                <Shield className="h-4 w-4" />
+                Admin Panel
+              </Link>
+            )}
             {user ? (
               <>
                 <Link
